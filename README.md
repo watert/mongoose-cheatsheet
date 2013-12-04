@@ -10,18 +10,28 @@ mongoose.connect("localhost/test")
 
 ## Schema: 
 ```coffeescript
-modelSchema = {title:"String",content:"String"}
-Model = new mongoose.Schema modelSchema,options
-
-
-# Schema Options
-Model = new mongoose.Schema schema,
+# Setup schema
+schema = mongoose.Schema schema,
 	strict:false 
 
-# ModelDefine: 
-Model = new mongoose.Schema(modelSchema,options)
+# Static Methods
+schema.statics "methodName",(callback)->
+	this.find({name: name}, callback)
 
-# Initialize: 
+# Instance Methods
+schema.methods.findSimilarTypes = (callback)->
+	this.model('Animal').find({ type: this.type }, callback)
+
+
+```
+
+## Model
+
+```
+# Setup model
+Model = mongoose.model("CollectionName",schema)
+
+# Initialize a model:
 model = new Model(key:"value") 
 ```
 

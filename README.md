@@ -1,4 +1,4 @@
-# Mongoose Cheatsheet
+Mongoose Cheatsheet
 ====================
 
 ## Schema:

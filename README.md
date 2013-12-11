@@ -57,3 +57,21 @@ Model.findByIdAndUpdate id,object,(err,data)->
 Model.findByIdAndRemove id,(err,data)-> 
 	# Do Something 
 ```
+
+## Express Restful Example
+```coffeescript
+base ?= "/restapi"
+app.delete "#{base}/:id",(req,res)->
+	Model.findByIdAndRemove req.params?.id,(err,data)->
+		res.json(data)
+app.post "#{base}/:id",(req,res)->
+	Model.findByIdAndUpdate req.params?.id, req?.body, (err,data)->
+		res.json(data)
+app.post "#{base}",(req,res)->
+	model = new Model(req.body)
+	model.save (err,data)->
+		unless err then res.json data
+app.get "#{base}",(req,res)->
+	Model.find {},(err,data)->
+		res.json data
+```

@@ -72,6 +72,6 @@ app.post "#{base}",(req,res)->
 	model.save (err,data)->
 		unless err then res.json data
 app.get "#{base}",(req,res)->
-	Model.find {},(err,data)->
+	Model.select("-password").find({}).sort("-id").exec(err,data)->
 		res.json data
 ```

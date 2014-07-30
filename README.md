@@ -11,8 +11,14 @@ mongoose.connect("localhost/test")
 ## Schema: 
 ```coffeescript
 # Setup schema
-schema = mongoose.Schema schema,
-	strict:false 
+
+schemaObject = 
+	name:"String"
+schemaOptions =
+	strict:false
+	# collection: mongodbCollectionName
+	
+schema = mongoose.Schema(schemaObject,schemaOptions)
 
 # Static Methods
 schema.statics "methodName",(callback)->
